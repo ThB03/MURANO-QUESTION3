@@ -1,0 +1,19 @@
+public class DataBase is
+    private constructor DataBase() is
+        //code for the constructor
+        
+    //create a static instance of the database
+    //null if no database was created yet, or the database created
+    private static field instance : DataBase
+
+    public static method getInstance() is
+        //check if there is a instance already created,
+        if(DataBase.instance == null) then
+            getTreadLock() and then
+                //ensure that there is still no instance of the database
+                //after waiting for the lock's release
+                //create a new instance
+                if(DataBase.instance==null) then 
+                    DataBase.instance = new DataBase
+        //return the instance of the database
+        return DataBase.instance
